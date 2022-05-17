@@ -1,7 +1,38 @@
 .container {
-  display: flex
+  max-width: 1240px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
 }
 
 .navbar {
+}
+
+.products__body {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.product__container {
   display: flex;
+  background: #fff;
+  padding: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  transition: all 0.2s ease 0s;
+}
+
+.product__container:hover {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
+.product__img {
+  width: 350px;
+  height: 350px;
+  object-fit: contain;
 }

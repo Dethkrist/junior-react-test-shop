@@ -1,32 +1,45 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import { CATEGORIES_LIST, PRODUCTS_LIST } from "./queries/QueriesList"
-import QueryWrapper from './queries/QueryWrapper';
 import './App.css';
 import Products from './components/Products';
 
-const NavbarWithQuery = QueryWrapper(CATEGORIES_LIST, Navbar)
-const ProductsWithQuery = QueryWrapper(PRODUCTS_LIST, Products)
+
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      currentCategory : 'all'
+      currentCategory : 'none',
+      selectedCurrency: 'USD'
     }
-    this.setCategory = this.setCategory.bind(this)
+    this.fetchProducts = this.fetchProducts.bind(this)
+    this.selectCategory = this.selectCategory.bind(this)
   }
 
-  setCategory = (name) => {
-    this.setState({currentCategory: name})
+
+  fetchProducts(name) {
+    const {data} = this.props
+    const selectedProducts = data.categories.find((category) => {
+      return category.name === name
+    })
+      this.setState({currentCategory: selectedProducts})
+  }
+
+  selectCategory(name) {
+    this.fetchProducts(name)
+  }
+
+  componentDidMount() {
+    this.fetchProducts('all')
   }
 
   render () {
-    console.log(this.state.currentCategory)
-    return (
-      <div>
-        <NavbarWithQuery callback={this.setCategory}/>
-        <ProductsWithQuery currentCategory={this.state.currentCategory}/>
+    if (this.state.currentCategory == 'none') {
+      return <h1>LOADING</h1>
+    } return (
+      <div className="container">
+        <Navbar data={this.props.data.categories} callback={this.selectCategory}/>
+        <Products currentCategory={this.state.currentCategory} selectedCurrency={this.state.selectedCurrency}/>
       </div>
     )
   }

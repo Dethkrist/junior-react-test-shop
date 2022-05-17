@@ -6,29 +6,29 @@ class Navbar extends React.Component {
     this.state = {
       categoriesList: [],
     }
-    this.selectCategory = this.selectCategory.bind(this)
   }
 
-  fetchCategories() {
+  fetchCategoriesList() {
     const {data} = this.props
-    data.categories.map(({name}) => {
+    data.map(({name}) => {
       this.setState(prevState => ({
         categoriesList: [...prevState.categoriesList, name],
       }));
     })
   }
 
-  selectCategory = (name) => {
+
+  selectCategory(name) {
     this.props.callback(name)
   }
 
-  componentDidMount() {
-    this.fetchCategories()
-  }
+componentDidMount() {
+  this.fetchCategoriesList()
+}
 
   render () {
     const {categoriesList} = this.state
-    return (
+    return  (
       <div>
         {categoriesList.map((name) => 
         <button

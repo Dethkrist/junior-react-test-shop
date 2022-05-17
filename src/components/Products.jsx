@@ -1,43 +1,36 @@
-import { reobserveCacheFirst } from '@apollo/client/core/ObservableQuery';
 import React from 'react';
-import Product from './Product';
+
 
 class Products extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      productList: {}
     }
   }
 
-componentDidMount() {
-  this.fetchProducts()
-}
 
-  // componentDidUpdate(prevState) {
-  //   if (prevState.productList !== this.state.productList) {
-  //     this.fetchProducts()
-  //   }
-  // }
-
-
-  fetchProducts() {
-    const {data, currentCategory} = this.props
-    const selectedProducts = data.categories.find((category) => {
-      return category.name === currentCategory
+  showPrice(product) {
+    const price = product.prices.find((price) => {
+      return price.currency.label === this.props.selectedCurrency
     })
-    this.setState({productList: selectedProducts})
+    return price.currency.symbol + price.amount
   }
+
 
   render () {
     const {currentCategory} = this.props
-    console.log(this.state.productList)
     return (
       <div>
-        <h1 className="category__title">{currentCategory.toUpperCase()}</h1>
-        {/* {this.state.productList.products.map(({product}) => (
-          <Product productInfo={product}/>
-        ))} */}
+        <h1 className="category__title">{currentCategory.name.toUpperCase()}</h1>
+        <div className="products__body">
+            {currentCategory.products.map((product) => ( 
+            <div key={product.id} className="product__container">
+              <img className="product__img" src={product.gallery[0]} alt="1111"/>
+              <div className="product__title">{product.name}</div>
+              <div className="product__price">{this.showPrice(product)}</div>
+            </div>
+        ))}
+        </div>
       </div>
     )  
   }
