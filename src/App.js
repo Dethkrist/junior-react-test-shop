@@ -2,47 +2,58 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 import Products from './components/Products';
-
+import getCategoriesList from './queries/GetCategoriesList';
+import getProducts from './queries/GetProducts';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      currentCategory : 'none',
+      categoriesList: [],
+      productList: [],
+      currentCategory : '',
       selectedCurrency: 'USD'
     }
-    this.fetchProducts = this.fetchProducts.bind(this)
-    this.selectCategory = this.selectCategory.bind(this)
+    this.setCategory = this.setCategory.bind(this)
+    this.fetchstart = this.fetchStart.bind(this)
   }
 
 
-  fetchProducts(name) {
-    const {data} = this.props
-    const selectedProducts = data.categories.find((category) => {
-      return category.name === name
-    })
-      this.setState({currentCategory: selectedProducts})
-  }
-
-  selectCategory(name) {
+  setCategory(name) {
     this.fetchProducts(name)
   }
 
-  componentDidMount() {
-    this.fetchProducts('all')
+  
+  async fetchProducts(name) {
+    const result = await getProducts(name)
+    this.setState({productList: result, currentCategory: name})
   }
 
-  render () {
-    if (this.state.currentCategory == 'none') {
-      return <h1>LOADING</h1>
-    } return (
-      <div className="container">
-        <Navbar data={this.props.data.categories} callback={this.selectCategory}/>
-        <Products currentCategory={this.state.currentCategory} selectedCurrency={this.state.selectedCurrency}/>
-      </div>
-    )
+
+  async  fetchStart() {
+    const result = await getCategoriesList()
+    const startCategory = result[0].name
+    const resultAll = await getProducts(startCategory)
+    this.setState({categoriesList: result, productList: resultAll, currentCategory: startCategory})
   }
+
+
+  componentDidMount() {
+    this.fetchStart()
+}
+
+
+
+  render () {
+    const {productList, currentCategory, selectedCurrency, categoriesList} = this.state
+    return (
+      <div className="container">
+        <Navbar callback={this.setCategory} categoriesList={categoriesList}/>
+        <Products productList={productList} currentCategory={currentCategory} selectedCurrency={selectedCurrency}/>
+      </div>
+  )
+}
 }
 
 

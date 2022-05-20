@@ -1,39 +1,24 @@
 import React from 'react';
+import getProducts from '../queries/GetProducts';
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      categoriesList: [],
     }
   }
 
-  fetchCategoriesList() {
-    const {data} = this.props
-    data.map(({name}) => {
-      this.setState(prevState => ({
-        categoriesList: [...prevState.categoriesList, name],
-      }));
-    })
-  }
 
-
-  selectCategory(name) {
-    this.props.callback(name)
-  }
-
-componentDidMount() {
-  this.fetchCategoriesList()
-}
 
   render () {
-    const {categoriesList} = this.state
+    const {categoriesList} = this.props
     return  (
       <div>
-        {categoriesList.map((name) => 
+        {categoriesList.map(({name}) => 
         <button
-          onClick={() => this.selectCategory(name)}
-          key={name}>
+          onClick={() => this.props.callback(name)}
+          key={name}
+          value={name}>
           {name.toUpperCase()}
         </button>)}
       </div>
