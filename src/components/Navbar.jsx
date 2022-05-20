@@ -11,12 +11,12 @@ class Navbar extends React.Component {
 
 
   render () {
-    const {categoriesList} = this.props
+    const {categoriesList, callback} = this.props
     return  (
       <div>
         {categoriesList.map(({name}) => 
         <button
-          onClick={() => this.props.callback(name)}
+          onClick={() => callback(name)}
           key={name}
           value={name}>
           {name.toUpperCase()}
