@@ -1,5 +1,5 @@
 import React from 'react';
-import getProducts from '../queries/GetProducts';
+import { NavLink } from 'react-router-dom';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -9,18 +9,17 @@ class Navbar extends React.Component {
   }
 
 
-
   render () {
     const {categoriesList, callback} = this.props
     return  (
-      <div>
+      <div  className="navbar">
         {categoriesList.map(({name}) => 
-        <button
-          onClick={() => callback(name)}
-          key={name}
-          value={name}>
+        <NavLink
+          className="navbar__link"
+          to={`/${name}`}
+          key={name}>
           {name.toUpperCase()}
-        </button>)}
+        </NavLink>)}
       </div>
     )  
   }

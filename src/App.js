@@ -1,9 +1,13 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
-import Products from './components/Products';
+import Category from './components/Category';
 import getCategoriesList from './queries/GetCategoriesList';
-import getProducts from './queries/GetProducts';
+import { BrowserRouter } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import ProductAttrBuy from './components/ProductAttrBuy';
 
 
 class App extends React.Component {
@@ -11,31 +15,18 @@ class App extends React.Component {
     super(props)
     this.state = { 
       categoriesList: [],
-      productList: [],
-      currentCategory : '',
+      defaultCategory : '',
       selectedCurrency: 'USD'
     }
-    this.setCategory = this.setCategory.bind(this)
-    this.fetchstart = this.fetchStart.bind(this)
+    this.fetchStart = this.fetchStart.bind(this)
   }
 
-
-  setCategory(name) {
-    this.fetchProducts(name)
-  }
-
-  
-  async fetchProducts(name) {
-    const result = await getProducts(name)
-    this.setState({productList: result, currentCategory: name})
-  }
 
 
   async  fetchStart() {
     const result = await getCategoriesList()
     const startCategory = result[0].name
-    const resultAll = await getProducts(startCategory)
-    this.setState({categoriesList: result, productList: resultAll, currentCategory: startCategory})
+    this.setState({categoriesList: result, defaultCategory: startCategory})
   }
 
 
@@ -46,11 +37,23 @@ class App extends React.Component {
 
 
   render () {
-    const {productList, currentCategory, selectedCurrency, categoriesList} = this.state
+    const {defaultCategory, selectedCurrency, categoriesList} = this.state
     return (
       <div className="container">
-        <Navbar callback={this.setCategory} categoriesList={categoriesList}/>
-        <Products productList={productList} currentCategory={currentCategory} selectedCurrency={selectedCurrency}/>
+        <BrowserRouter>
+          <Navbar callback={this.setCategory} categoriesList={categoriesList}/>
+          <Switch>
+            <Route exact path='/'>
+                <Redirect to={`/${defaultCategory}`}/>
+            </Route>
+            <Route exact path={`/:category`}>{({match}) => 
+              <Category match={match} selectedCurrency={selectedCurrency}/>}  
+            </Route>
+            <Route exact path={`/product/:id`}>{({match}) => 
+              <ProductAttrBuy match={match} selectedCurrency={selectedCurrency}/>}
+            </Route>
+          </Switch> 
+        </BrowserRouter>  
       </div>
   )
 }
