@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
-import Category from './components/Category';
+import Category from './Pages/Category';
 import getCategoriesList from './queries/GetCategoriesList';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import ProductAttrBuy from './components/ProductAttrBuy';
+import ProductPage from './Pages/ProductPage';
 
 
 class App extends React.Component {
@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Navbar callback={this.setCategory} categoriesList={categoriesList}/>
+          <Navbar categoriesList={categoriesList}/>
           <Switch>
             <Route exact path='/'>
                 <Redirect to={`/${defaultCategory}`}/>
@@ -49,8 +49,8 @@ class App extends React.Component {
             <Route exact path={`/:category`}>{({match}) => 
               <Category match={match} selectedCurrency={selectedCurrency}/>}  
             </Route>
-            <Route exact path={`/product/:id`}>{({match}) => 
-              <ProductAttrBuy match={match} selectedCurrency={selectedCurrency}/>}
+            <Route exact path={`/:category/:id`}>{({match}) => 
+              <ProductPage match={match} selectedCurrency={selectedCurrency}/>}
             </Route>
           </Switch> 
         </BrowserRouter>  

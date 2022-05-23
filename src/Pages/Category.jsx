@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 import getProducts from '../queries/GetProducts';
-import Product from './Product';
+import Product from '../components/Product';
 
 
 class Category extends React.Component {
@@ -40,7 +39,7 @@ class Category extends React.Component {
         <h1 className="category__title">{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}</h1>
         <div className="products__body">
           {productList.map((product) => (
-            <Link key={product.id} className="product__link" to={`/product/${product.id}`}>
+            <Link key={product.id} className="product__link" to={`/${product.category}/${product.id}`}>
               <Product
                 selectedCurrency={this.props.selectedCurrency} 
                 id={product.id} 

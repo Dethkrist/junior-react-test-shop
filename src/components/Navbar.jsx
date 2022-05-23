@@ -10,7 +10,7 @@ class Navbar extends React.Component {
 
 
   render () {
-    const {categoriesList, callback} = this.props
+    const {categoriesList} = this.props
     return  (
       <div  className="navbar">
         {categoriesList.map(({name}) => 
