@@ -1,5 +1,4 @@
 export default async function getProductPage(id) {
-
   const endpoint = 'http://localhost:4000/'
 
   const headers = {
@@ -37,8 +36,7 @@ export default async function getProductPage(id) {
         }
       }
   }
-    `,
-    "variables": {id : id}
+    `
   };
   
   const options = {
@@ -46,7 +44,6 @@ export default async function getProductPage(id) {
     "headers" : headers,
     "body": JSON.stringify(graphqlQuery)
   };
-
   const response = await fetch(endpoint, options);
   const result = await response.json();
 

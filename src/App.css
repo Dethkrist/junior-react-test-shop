@@ -1,5 +1,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:100,200,300,regular,500,600,700,800,900,100);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,regular,italic,600,700,900);
 
 
 body {
@@ -56,10 +58,6 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 100px 40px;
   align-items: center;
-}
-
-.product__link {
-  text-decoration: none;
 }
 
 

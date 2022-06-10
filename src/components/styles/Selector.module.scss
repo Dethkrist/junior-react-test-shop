@@ -1,0 +1,45 @@
+.selectorContainer {
+  display: flex;
+  flex-direction: row;
+  label:not(:last-child) {
+    margin-right: 12px;
+  }
+  input {
+    display: none;
+    &:checked + .colorSwatch {
+      border: 1px solid #fff;
+      outline: 1px solid #5ECE7B;
+    }
+    &:checked + .selector {
+      background: #000;
+      color: #fff;
+    }
+  }
+}
+
+.colorSwatch, .selector {
+  cursor: pointer;
+}
+
+.colorSwatch {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #1D1F22;
+  transition: all 0.2s ease 0s;
+}
+
+.selector {
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 112%;
+  color: #1D1F22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 63px;
+  height: 45px;
+  text-align: center;
+  border: 1px solid #1D1F22;
+  transition: all 0.2s ease 0s;
+}

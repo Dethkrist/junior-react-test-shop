@@ -14,8 +14,7 @@ export default async function getCategoriesList() {
           name
         }
       }
-    `,
-    "variables": {}
+    `
   };
   
   const options = {

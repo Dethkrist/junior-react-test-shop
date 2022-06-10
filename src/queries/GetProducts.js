@@ -27,8 +27,7 @@ export default async function getProducts(input) {
         }
       }
     }
-    `,
-    "variables": {input : input}
+    `
   };
   
   const options = {

@@ -1,0 +1,42 @@
+
+.galleryContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-right: 100px;
+}
+
+.galleryList {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.selectedPicture, .unselectedPicture {
+  margin-left: 15px;
+  transition: all 0.1s ease 0s;
+  cursor: pointer;
+  margin-bottom: 32px;
+  img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.selectedPicture {
+  opacity: 0.5;
+}
+
+.bigPicture {
+  margin-left: 30px;
+  img {
+    object-fit: contain;
+    width: 610px;
+    height: 511px;
+  }
+}

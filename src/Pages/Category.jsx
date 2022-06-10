@@ -11,6 +11,8 @@ class Category extends React.Component {
       productList: [],
     }
     this.fetchProducts = this.fetchProducts.bind(this)
+    this.categoryTitle = this.categoryTitle.bind(this)
+    this.mapProduct = this.mapProduct.bind(this)
   }
 
 
@@ -21,34 +23,51 @@ class Category extends React.Component {
 
 
   componentDidMount() {
-    this.fetchProducts(this.props.match.params.category)
+    const {category} = this.props.match.params
+    this.fetchProducts(category)
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.match.params.category !== this.props.match.params.category) {
-      this.fetchProducts(this.props.match.params.category)
+    const {category: prevCategory} = prevProps.match.params
+    const {category: currentCategory} = this.props.match.params
+    if(prevCategory!== currentCategory) {
+      this.fetchProducts(currentCategory)
     }  
   }
 
+  categoryTitle() {
+    const {category} = this.props.match.params
+    return category.charAt(0).toUpperCase() + category.slice(1)
+  }
+    
 
-  render () {
+  mapProduct() {
     const {productList} = this.state
-    const currentCategory = this.props.match.params.category
-    return (
-      <div>
-        <h1 className="category__title">{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}</h1>
-        <div className="products__body">
-          {productList.map((product) => (
-            <Link key={product.id} className="product__link" to={`/${product.category}/${product.id}`}>
+    const {selectedCurrency} = this.props
+    return productList.map((product) => (
+            <Link 
+              key={product.id} 
+              style={{textDecoration:"none"}} 
+              to={`/${product.category}/${product.id}`}>
               <Product
-                selectedCurrency={this.props.selectedCurrency} 
+                selectedCurrency={selectedCurrency} 
                 id={product.id} 
                 gallery={product.gallery} 
                 inStock={product.inStock}
                 name={product.name}
                 prices={product.prices}/>
             </Link>    
-          ))}
+))}
+
+
+  render () {
+    return (
+      <div>
+        <h1 className="category__title">
+          {this.categoryTitle()}
+        </h1>
+        <div className="products__body">
+          {this.mapProduct()}
         </div>
       </div>
     ) 
