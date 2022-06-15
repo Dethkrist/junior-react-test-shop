@@ -15,19 +15,19 @@ class Product extends React.Component {
   }
 
   render() {
-    const {id, gallery, inStock, name, prices} = this.props
+    const {product} = this.props
     return (
           <div className="product__container">
             <div className="img__container">
-              <img className="product__img" src={gallery[0]} alt={id}/>
-                {!inStock ? <div className="img__notInStock">OUT OF STOCK</div>: undefined}
+              <img className="product__img" src={product.gallery[0]} alt={product.id}/>
+                {!product.inStock ? <div className="img__notInStock">OUT OF STOCK</div>: undefined}
             </div>
             <div className="product__title_container">
-              <div className={inStock ? "product__title": "product__title_notInStock"}>
-                {name}
+              <div className={product.inStock ? "product__title": "product__title_notInStock"}>
+                {product.name}
               </div>
-              <div className={inStock ? "product__price": "product__price_notInStock"}>
-                {this.showPrice(prices)}
+              <div className={product.inStock ? "product__price": "product__price_notInStock"}>
+                {this.showPrice(product.prices)}
               </div>
             </div>  
           </div>

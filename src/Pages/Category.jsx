@@ -51,11 +51,7 @@ class Category extends React.Component {
               to={`/${product.category}/${product.id}`}>
               <Product
                 selectedCurrency={selectedCurrency} 
-                id={product.id} 
-                gallery={product.gallery} 
-                inStock={product.inStock}
-                name={product.name}
-                prices={product.prices}/>
+                product={product}/>
             </Link>    
 ))}
 

@@ -10,13 +10,13 @@ class Attributes extends React.Component {
 
   createAttributes() {
     const {attributes} = this.props;
-      return attributes && attributes.map(attribute => 
+      return attributes && attributes.map(attribute =>
         <div key={attribute.id}>
           <h4 className={style.attributeName}>
             {attribute.name.toUpperCase()}
           </h4>
-          <Selector 
-            id={attribute.id} 
+          <Selector
+            id={attribute.id}
             attribute={attribute}/>
         </div>
   )
