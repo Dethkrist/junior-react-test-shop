@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import getProducts from '../queries/GetProducts';
 import Product from '../components/Product';
+import { getCategory } from '../utils/data_loading/allQueries';
+import { loadData } from '../utils/data_loading/loadData';
 
 
 class Category extends React.Component {
@@ -17,7 +18,9 @@ class Category extends React.Component {
 
 
   async fetchProducts(categ) {
-    const result = await getProducts(categ)
+    const query = getCategory(categ)
+    const data = await loadData(query)
+    const result = data.category.products
     this.setState({productList: result})
   }
 

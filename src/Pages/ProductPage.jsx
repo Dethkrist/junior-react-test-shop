@@ -1,8 +1,9 @@
 import React from 'react';
-import getProductPage from '../queries/GetProductPage';
 import Gallery from '../components/Gallery';
 import Attributes from '../components/Attributes';
 import style from './styles/ProductPage.module.scss'
+import { getProductPage } from '../utils/data_loading/allQueries';
+import { loadData } from '../utils/data_loading/loadData';
 
 
 class ProductPage extends React.Component {
@@ -15,12 +16,15 @@ class ProductPage extends React.Component {
   }
 
   async fetchAttributes(id) {
-    const result = await getProductPage(id)
+    const query = getProductPage(id)
+    const data = await loadData(query)
+    const result = data.product
     this.setState({productAttributes: result})
   }
 
   componentDidMount() {
-    this.fetchAttributes(this.props.match.params.id)
+    const {id} = this.props.match.params
+    this.fetchAttributes(id)
   }
   render() {
     const {productAttributes} = this.state
