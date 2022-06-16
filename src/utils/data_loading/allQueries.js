@@ -69,3 +69,16 @@ export const getCategory = (input) => (
     `
   }
 )
+
+export const getCurrencies = () => (
+  {
+    "query" : `
+    {
+      currencies {
+        label
+        symbol
+      }
+    }
+    `
+  }
+)

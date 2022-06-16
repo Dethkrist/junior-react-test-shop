@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Product from '../components/Product';
 import { getCategory } from '../utils/data_loading/allQueries';
 import { loadData } from '../utils/data_loading/loadData';
 
+import Product from '../components/Product';
 
 class Category extends React.Component {
   constructor(props) {

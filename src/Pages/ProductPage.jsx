@@ -1,10 +1,9 @@
 import React from 'react';
+import { getProductPage } from '../utils/data_loading/allQueries';
+import { loadData } from '../utils/data_loading/loadData';
 import Gallery from '../components/Gallery';
 import Attributes from '../components/Attributes';
 import style from './styles/ProductPage.module.scss'
-import { getProductPage } from '../utils/data_loading/allQueries';
-import { loadData } from '../utils/data_loading/loadData';
-
 
 class ProductPage extends React.Component {
   constructor(props) {

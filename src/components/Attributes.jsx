@@ -1,5 +1,5 @@
 import React from 'react';
-import Selector from './Selector';
+import Selector from './elements/Selector';
 import style from './styles/Attributes.module.scss'
 
 class Attributes extends React.Component {

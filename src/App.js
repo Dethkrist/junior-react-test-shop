@@ -1,14 +1,11 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Switch } from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { getCategoriesList } from './utils/data_loading/allQueries';
+import { loadData } from './utils/data_loading/loadData';
+import Navbar from './components/navbar/Navbar';
 import Category from './Pages/Category';
 import ProductPage from './Pages/ProductPage';
 import './App.css';
-import { getCategoriesList } from './utils/data_loading/allQueries';
-import { loadData } from './utils/data_loading/loadData';
 
 
 class App extends React.Component {
@@ -24,7 +21,7 @@ class App extends React.Component {
 
 
 
-  async  fetchStart() {
+  async fetchStart() {
     const query = getCategoriesList()
     const data = await loadData(query)
     const result = data.categories
