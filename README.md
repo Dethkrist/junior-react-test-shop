@@ -1,5 +1,5 @@
 ## __WARNING!__  
-### __To run this project, you need to run an endpoint from [this repository](https://github.com/Bravv0/junior-react-endpoint-master)__
+### __Before running this project, you need to run an endpoint from [this repository](https://github.com/Bravv0/junior-react-endpoint-master)__
 
 This project fetches data from endpoint "localhost:4000" by default.
 
@@ -7,7 +7,7 @@ This is unfinished project, based on a test case.
 
 For the test case, use of functional components is prohibited. Only class components.
 
-That's why i use fetch API now to fetch data from GraphQL before i'll wind the best way. 
+That's why i use fetch API now to fetch data from GraphQL before i'll find the best way. 
 
 Next steps: 
  * Create working shopping cart;
