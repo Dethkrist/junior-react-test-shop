@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './styles/Gallery.module.scss'
+import style from '../styles/components/Gallery.module.scss'
 
 class Gallery extends React.Component {
   constructor(props) {
@@ -26,12 +26,14 @@ createGallery() {
           <div 
             className={this.state.bigImageIndex === index ? 
             style.selectedPicture : 
-            style.unselectedPicture}>
-            <img 
-              onClick={() => this.changeMainImage(index)} 
-              className={style.imgGalleryItem} 
-              src={item} 
-              alt="#"/>
+            style.unselectedPicture}
+          >
+          <img 
+            onClick={() => this.changeMainImage(index)} 
+            className={style.imgGalleryItem} 
+            src={item} 
+            alt="#"
+          />
           </div>
         </li> 
       )

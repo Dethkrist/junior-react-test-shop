@@ -1,19 +1,22 @@
 .selectorContainer {
   display: flex;
   flex-direction: row;
-  label:not(:last-child) {
-    margin-right: 12px;
-  }
-  input {
-    display: none;
-    &:checked + .colorSwatch {
+
+    label:not(:last-child) {
+      margin-right: 12px;
+    }
+
+    input {
+      display: none;
+      &:checked + .colorSwatch {
       border: 1px solid #fff;
       outline: 1px solid #5ECE7B;
-    }
-    &:checked + .selector {
-      background: #000;
-      color: #fff;
-    }
+      }
+
+      &:checked + .selector {
+        background: #000;
+        color: #fff;
+      }
   }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '../styles/components/Product.module.scss'
 
 class Product extends React.Component {
   constructor(props) {
@@ -8,25 +9,36 @@ class Product extends React.Component {
   }
 
   showPrice(prices) {
+    const {selectedCurrency} = this.props
     const price = prices.find((price) => {
-      return price.currency.label === this.props.selectedCurrency
+      return price.currency.label === selectedCurrency.label
     })
-    return price.currency.symbol + price.amount
+    return selectedCurrency.symbol + price.amount
   }
 
   render() {
     const {product} = this.props
     return (
-          <div className="product__container">
-            <div className="img__container">
-              <img className="product__img" src={product.gallery[0]} alt={product.id}/>
-                {!product.inStock ? <div className="img__notInStock">OUT OF STOCK</div>: undefined}
+          <div className={style.productContainer}>
+            <div className={style.imgContainer}>
+              <img 
+                className={style.productImg} 
+                src={product.gallery[0]} 
+                alt={product.id}
+              />
+              {!product.inStock ? 
+              <div className={style.imgNotInStockCover}>OUT OF STOCK</div>: ''}
             </div>
-            <div className="product__title_container">
-              <div className={product.inStock ? "product__title": "product__title_notInStock"}>
-                {product.name}
+            <div className={style.productTitleContainer}>
+              <div 
+                className={product.inStock ?
+                `${style.productTitle}`: 
+                `${style.productTitle} ${style.notInStock}`}>
+                {product.brand} {product.name}
               </div>
-              <div className={product.inStock ? "product__price": "product__price_notInStock"}>
+              <div className={product.inStock ?
+                `${style.productPrice}`: 
+                `${style.productPrice} ${style.notInStock}`}>
                 {this.showPrice(product.prices)}
               </div>
             </div>  

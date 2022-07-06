@@ -1,0 +1,55 @@
+
+.navbarContainer{
+  max-width: 1255px;
+  padding: 0px 15px;
+  margin: auto;
+  display: flex;
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  justify-self: flex-start;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  height: 80px;
+}
+
+.menuLink {
+  padding: 17px;
+  color: #1D1F22;
+  padding-bottom: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+
+    &:hover {
+      color: #379a52;
+    }
+}
+
+.logo {
+  margin: 0px 460px 0px 385px;
+  // margin-right: 150px;
+    .homeLink {
+      img{
+        transition: all 0.2s ease 0s;
+          &:hover {
+            transform: scale(110%);
+          }
+      }
+  }
+}
+
+.currencyAndCart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart {
+  margin-left: 22px;
+}

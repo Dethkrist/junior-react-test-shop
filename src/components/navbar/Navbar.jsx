@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './Menu';
 import CurrencyAndCart from './CurrencyAndCart';
 import Logo from './Logo';
-import style from '../styles/Navbar.module.scss'
+import style from '../../styles/components/Navbar.module.scss'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Navbar extends React.Component {
 
 
   render () {
-    const {categoriesList} = this.props
+    const {categoriesList} = this.props;
     return  (
       <div className={style.navbarContainer}>
         <Menu categories={categoriesList}/>

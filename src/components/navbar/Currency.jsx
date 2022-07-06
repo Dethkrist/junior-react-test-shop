@@ -1,88 +1,106 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { getCurrencies } from '../../utils/data_loading/allQueries';
-import { loadData } from '../../utils/data_loading/loadData';
-import style from '../styles/Navbar.module.scss'
-import img from '../../images/vector.svg'
+import dataLoader from '../../utils/data_loading/dataLoader';
+import CurrencyMenu from '../elements/CurrencyMenu';
+import CurrencyButton from '../elements/CurrencyButton';
+import { changeCurrency } from '../../store/currencySlice';
+
+
+
+
+
 
 class Currency extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       currencies: [],
-      selectedCurrency: {symbol: '$', label: 'USD'},
       menu: false,
-    }
-    this.fetchCurrencies = this.fetchCurrencies.bind(this)
-    this.showMenu = this.showMenu.bind(this)
-    this.selectCurrency = this.selectCurrency.bind(this)
+    };
+    this.ref = React.createRef();
+    this.fetchCurrencies = this.fetchCurrencies.bind(this);
+    this.showMenu = this.showMenu.bind(this);
+    this.selectCurrency = this.selectCurrency.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   async fetchCurrencies() {
-    const query = getCurrencies()
-    const data = await loadData(query)
-    const result = data.currencies
+    const query = getCurrencies();
+    const data = await dataLoader(query);
+    const result = data.currencies;
     this.setState({
       currencies: result,
-    })
+    });
   }
 
+
   showMenu() {
-    const {menu} = this.state
+    const {menu} = this.state;
     if (!menu) {
       this.setState({menu: true})
     } else {
       this.setState({menu: false})
+    };
+  }
+
+  closeMenu() {
+    this.setState({menu: false});
+  }
+
+  checkClickOutside = e => {
+    const {menu} = this.state;
+    if (menu && this.ref.current && !this.ref.current.contains(e.target)) {
+      this.closeMenu();
+      document.removeEventListener('click', this.checkClickOutside);
+    };
+  }
+
+  renderMenu() {
+    const {selectedCurrency} = this.props.currency;
+    const {menu, currencies} = this.state;
+    if (menu) {
+      document.addEventListener('click', this.checkClickOutside);
+      return (
+        <CurrencyMenu 
+          menu={menu}
+          currencies={currencies} 
+          selectedCurrency={selectedCurrency} 
+          callback={this.selectCurrency}
+        />
+      )
     }
   }
 
-
-
   selectCurrency(currency) {
-    this.setState({
-      selectedCurrency: 
-        {
-          symbol: currency.symbol,
-          label: currency.label
-        },
-      menu: false
-      })
+    this.props.changeCurrency(currency);
+    this.setState({menu: false});
   }
 
   componentDidMount() {
-    this.fetchCurrencies()
+    this.fetchCurrencies();
   }
 
+
+
   render() {
-    const { currencies, selectedCurrency, menu } = this.state
+    const {selectedCurrency} = this.props.currency;
+    const { menu } = this.state;
     return (
-      <div className={style.currencySelector}>
-        <button 
-          className={style.currencyLabel}
-          onClick={() => this.showMenu()}>
-          {selectedCurrency.symbol}
-          <img 
-            className={style.arrow} 
-            src={img} 
-            style={menu ? 
-            {transform: 'rotate(180deg)'} : 
-            {transform: 'rotate(0deg)'}}/>
-        </button>
-        <div
-          className={`${style.currencyMenu} ${menu ? style.menuOn : style.menuOff}`}>
-            <ul className={style.currMenuList}>
-              {currencies.map((currency) => (
-                <li
-                  key={currency.label}
-                  className={style.currencyMenuItem}
-                  onClick={() => this.selectCurrency(currency)}>
-                    {currency.symbol} {currency.label}
-                </li>
-              ))}
-            </ul>
-        </div>
+      <div ref={this.ref}>
+        <CurrencyButton 
+          menu={menu} 
+          selectedCurrency={selectedCurrency} 
+          callback={this.showMenu}
+        />
+        {this.renderMenu()}
       </div>
     )
   }
 }
 
-export default Currency;
+const mapStateToProps = (state) => {
+  return {currency: state.currency};
+}
+
+export default connect(mapStateToProps, {changeCurrency})(Currency);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import style from '../styles/Navbar.module.scss'
+import style from '../../styles/components/Navbar.module.scss'
 
 class Menu extends React.Component {
   constructor(props) {
@@ -21,9 +21,9 @@ class Menu extends React.Component {
   
   render() {
     return(
-      <div className={style.menu}>
+      <nav className={style.menu}>
         {this.createMenu()}
-      </div>
+      </nav>
     )
   }
 }

@@ -1,0 +1,53 @@
+.currencyMenu{
+  position: absolute;
+  font-family: 'Raleway';
+  font-size: 18px;
+  font-weight: 500;
+  color: #1D1F22;
+  line-height: 160%;
+  transform: translate(-20px, 7px);
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+
+    &.menuOn {
+    animation: opacity 0.4s ease 1;
+    display: block;
+    }
+
+    &.menuOff {
+    animation: opacity 0.4s ease 1 reverse;
+    display: none;
+    }
+
+    .currMenuList {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+
+        .currencyMenuItem {
+        padding: 10px 20px;
+        cursor: pointer;
+
+          &.selected {
+            color: #cbc7c7;
+            background: #fafafa;
+          }
+
+          &:hover {
+            background: #EEEEEE;
+          }
+    }
+  }
+}
+
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
+}

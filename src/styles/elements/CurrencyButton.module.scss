@@ -1,0 +1,19 @@
+.currencyLabel {
+  font-family: 'Raleway';
+  font-size: 18px;
+  font-weight: 500;
+  color: #1D1F22;
+  line-height: 160%;
+  cursor: pointer;
+  background: none;
+  width: 3em;
+  transition: background 0.2s ease 0s;
+  border: none;
+    .arrow {
+      position: relative;
+      transition: transform 0.2s ease 0s;
+      top: 14px;
+      left: 10px;
+    }
+}
+

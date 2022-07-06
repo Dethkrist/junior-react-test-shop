@@ -53,6 +53,7 @@ export const getCategory = (input) => (
         products {
           id 
           name
+          brand
           gallery
           inStock
           category

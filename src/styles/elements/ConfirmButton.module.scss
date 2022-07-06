@@ -1,0 +1,22 @@
+.confirmButton {
+  width: 292px;
+  height: 52px;
+  background: #5ECE7B;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  transition: all 0.2s ease 0s;
+  &:hover {
+    background: #67da86;
+  }
+  &:active {
+    background: #429358;
+  }
+  &:disabled {
+    background: #a3a1a1;
+  }
+}
