@@ -8,14 +8,14 @@
 
 .galleryList {
   display: flex;
-  padding: 0 8px;
+  padding: 0 10px;
   margin: 0;
   list-style-type: none;
   flex-direction: column;
   max-height: 600px;
   overflow-y: auto;
   overflow-x: hidden;
-  // I couldn't provide custom scrollbar in Firefox :( i'll try to find new way
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 5px;
   }

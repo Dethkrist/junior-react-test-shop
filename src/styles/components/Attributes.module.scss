@@ -63,7 +63,7 @@
   font-size: 16px;
   line-height: 160%;
   padding-right: 8px;
-    // I couldn't provide custom scrollbar in Firefox :( i'll try to find new way
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 5px;
   }
