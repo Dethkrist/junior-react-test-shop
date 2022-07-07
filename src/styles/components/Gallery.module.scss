@@ -15,6 +15,7 @@
   max-height: 600px;
   overflow-y: auto;
   overflow-x: hidden;
+  // I couldn't provide custom scrollbar in Firefox :( i'll try to find new way
   &::-webkit-scrollbar {
     width: 5px;
   }
