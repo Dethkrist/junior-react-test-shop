@@ -37,7 +37,7 @@ class Product extends React.Component {
                 {product.brand} {product.name}
               </div>
               <div className={product.inStock ?
-                `${style.productPrice}`: 
+                style.productPrice : 
                 `${style.productPrice} ${style.notInStock}`}>
                 {this.showPrice(product.prices)}
               </div>

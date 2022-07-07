@@ -25,7 +25,7 @@
 }
 
 .attributeName {
-  margin-top: 43px;
+  margin: 24px 0px 10px 0px;
   font-family: "Roboto Condensed";
   font-weight: 700;
   font-size: 18px;
@@ -54,9 +54,25 @@
 }
 
 .description {
-  margin: 40px 0px;
+  margin: 24px 0px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-family: "Roboto";
   font-weight: 400;
   font-size: 16px;
   line-height: 160%;
+  padding-right: 8px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #eee;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #585757;
+    height: 5px;
+    border-radius: 5px;
+  }
 }

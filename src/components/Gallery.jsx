@@ -22,19 +22,17 @@ createGallery() {
     return 
   } else {
       return gallery && gallery.map((item, index) =>
-        <li key={item} className={style.galleryItem}>
-          <div 
-            className={this.state.bigImageIndex === index ? 
-            style.selectedPicture : 
-            style.unselectedPicture}
-          >
+        <li 
+          key={item} 
+          className={this.state.bigImageIndex === index ? 
+          `${style.smallPicture} ${style.selected}`: 
+          style.smallPicture}
+        >
           <img 
             onClick={() => this.changeMainImage(index)} 
-            className={style.imgGalleryItem} 
             src={item} 
             alt="#"
           />
-          </div>
         </li> 
       )
   }

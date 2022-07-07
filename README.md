@@ -10,9 +10,11 @@ For the test case, use of functional components is prohibited. Only class compon
 That's why i use fetch API now to fetch data from GraphQL before i'll find the best way. 
 
 Next steps: 
- * Create working shopping cart;
- * Cart dropdown menu;
- * Store selected products in local storage;
+ * Create working shopping cart
+ * Cart dropdown menu
+ * Store selected products in local storage
+ * Provide loaders
+ * Improve routing
 
 
 This project style based on this [template](https://www.figma.com/file/MSyCAqVy1UgNap0pvqH6H3/Junior-Frontend-Test-Designs-(Public)?node-id=150%3A1168)
