@@ -7,6 +7,9 @@
   a:focus,a:active{outline:  none;}
   nav,footer,header,aside{display:  block;}
   html,body {
+  margin: 0;
+  padding: 0;
+  overflow: overlay;
   -ms-text-size-adjust:  100%;
   -moz-text-size-adjust:  100%;
   -webkit-text-size-adjust:  100%;
